@@ -5,16 +5,21 @@ using NPoco.SqlServer;
 
 namespace MCHomem.NPoco.Proto.Models.Repositories
 {
-    public class TestAppContext
+    public static class TestAppContext
     {
-        public DatabaseFactory DbFactory { get; set; }
+        public static DatabaseFactory DbFactory { get; set; }
 
-        public Database Get()
+        public static Database Get()
         {
-            return new SqlServerDatabase(AppSettings.Get("DataConnection"));
+            if(DbFactory == null)
+            {
+                Setup();
+            }                
+
+            return DbFactory.GetDatabase();
         }
 
-        public void Setup()
+        public static void Setup()
         {
             FluentConfig fluentConfig = FluentMappingConfiguration.Configure(new EmployeeMapping());
 

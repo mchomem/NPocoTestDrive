@@ -9,7 +9,6 @@ namespace MCHomem.NPoco.Proto.ConsoleApp
         static void Main(string[] args)
         {
             Console.Title = "NPoco CRUD";
-            new TestAppContext().Setup();
             new MenuCon().ShowMenu();
         }
     }

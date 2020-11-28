@@ -6,7 +6,7 @@ namespace MCHomem.NPoco.Proto.Models.Mappings
     public class EmployeeMapping : Map<Employee>
     {
         public EmployeeMapping()
-        {            
+        {
             this.TableName("Employee");
             this.PrimaryKey("EmployeeID");
             this.Columns(x =>
