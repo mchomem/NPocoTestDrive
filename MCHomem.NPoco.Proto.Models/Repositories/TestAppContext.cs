@@ -11,10 +11,10 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
         public static Database Get()
         {
-            if(DbFactory == null)
+            if (DbFactory == null)
             {
                 Setup();
-            }                
+            }
 
             return DbFactory.GetDatabase();
         }
