@@ -1,4 +1,5 @@
 ﻿using MCHomem.NPoco.Proto.ConsoleApp.Views;
+using MCHomem.NPoco.Proto.Models.Repositories;
 using System;
 
 namespace MCHomem.NPoco.Proto.ConsoleApp
