@@ -6,7 +6,23 @@ namespace MCHomem.NPoco.Proto.Models
 {
     public static class AppSettings
     {
-        public static String Get(String key)
+        public static String StringConnection
+        {
+            get
+            {
+                return Get("SqlServerConnection");
+            }
+        }
+
+        public static Int32 MaxPagging
+        {
+            get
+            {
+                return Convert.ToInt32(Get("MaxPagging"));
+            }
+        }
+
+        private static String Get(String key)
         {
             try
             {

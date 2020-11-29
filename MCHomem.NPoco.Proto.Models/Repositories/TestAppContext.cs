@@ -25,7 +25,7 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
             DbFactory = DatabaseFactory.Config(x =>
             {
-                x.UsingDatabase(() => new SqlServerDatabase(AppSettings.Get("DataConnection")));
+                x.UsingDatabase(() => new SqlServerDatabase(AppSettings.StringConnection));
                 x.WithFluentConfig(fluentConfig);
                 x.WithMapper(new Mapper());
             });

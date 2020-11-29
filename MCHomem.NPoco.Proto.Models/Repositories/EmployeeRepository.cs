@@ -46,7 +46,14 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
                 sql.Append(" and (@2 is null or DocumentNumber = @2)");
                 sql.Append(" and (@3 is null or Active = @3)");
 
-                return db.Fetch<Employee>(sql.ToString(), entity?.EmployeeID, entity?.Name, entity?.DocumentNumber, entity?.Active);
+                return db.Fetch<Employee>
+                    (
+                        sql.ToString()
+                        , entity?.EmployeeID
+                        , entity?.Name
+                        , entity?.DocumentNumber
+                        , entity?.Active
+                    );
             }
         }
 
