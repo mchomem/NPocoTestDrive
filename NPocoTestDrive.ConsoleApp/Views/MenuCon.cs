@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MCHomem.NPoco.Proto.ConsoleApp.Views
+﻿namespace NPocoTestDrive.ConsoleApp.Views
 {
     public class MenuCon
     {
@@ -8,7 +6,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
         {
             while (true)
             {
-                Boolean exit = false;
+                bool exit = false;
                 EmployeeCon employeeCon = new EmployeeCon();
 
                 Console.Clear();
@@ -19,7 +17,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                 Console.WriteLine("4. Delete employee;");
                 Console.WriteLine("0. Finish.\n");
                 Console.Write("Operation: ");
-                String op = Console.ReadLine();
+                string op = Console.ReadLine();
 
                 switch (op)
                 {

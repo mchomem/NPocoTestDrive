@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace MCHomem.NPoco.Proto.Models.Repositories
+﻿namespace NPocoTestDrive.Data.Repositories
 {
     interface IRepository<T>
     {

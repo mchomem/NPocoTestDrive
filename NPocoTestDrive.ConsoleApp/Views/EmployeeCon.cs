@@ -1,11 +1,9 @@
-﻿using MCHomem.NPoco.Proto.ConsoleApp.Views.UserControl;
-using MCHomem.NPoco.Proto.Models;
-using MCHomem.NPoco.Proto.Models.Entities;
-using MCHomem.NPoco.Proto.Models.Repositories;
-using System;
-using System.Collections.Generic;
+﻿using NPocoTestDrive.ConsoleApp.Views.UserControl;
+using NPocoTestDrive.Data.Repositories;
+using NPocoTestDrive.Domain.Entities;
+using NPocoTestDrive.Domain.Models;
 
-namespace MCHomem.NPoco.Proto.ConsoleApp.Views
+namespace NPocoTestDrive.ConsoleApp.Views
 {
     public class EmployeeCon
     {
@@ -132,7 +130,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                 {
                     ConsoleMessage.Show("The document number must contain 11 characters.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
-                }                
+                }
 
                 employee.DocumentNumber = this.FormatDocumentNumber(documentNumber);
                 break;
@@ -164,8 +162,9 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             {
                 Console.Clear();
                 Console.Write("Name: ");
-                String name = Console.ReadLine();
-                if (String.IsNullOrEmpty(name))
+                string name = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(name))
                 {
                     ConsoleMessage.Show("Enter a name for the employee!", ConsoleMessage.TypeMessage.WARNING);
                     continue;
@@ -179,8 +178,9 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             {
                 Console.Clear();
                 Console.Write("Doc number: ");
-                String documentNumber = Console.ReadLine();
-                if (String.IsNullOrEmpty(documentNumber))
+                string documentNumber = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(documentNumber))
                 {
                     ConsoleMessage.Show("Enter the employee's document number!", ConsoleMessage.TypeMessage.WARNING);
                     continue;
@@ -191,7 +191,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                     ConsoleMessage.Show("The document number must contain 11 characters.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
-                
+
                 employee.DocumentNumber = this.FormatDocumentNumber(documentNumber);
                 break;
             }
@@ -202,7 +202,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             {
                 Console.Clear();
                 Console.Write("Active[y/n]? ");
-                String op = Console.ReadLine().ToLower();
+                string op = Console.ReadLine().ToLower();
 
                 if (op.Equals("y"))
                 {
@@ -239,7 +239,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
 
             this.GetEmployeeDetails(employee);
 
-            Boolean noDelete = false;
+            bool noDelete = false;
 
             while (true)
             {

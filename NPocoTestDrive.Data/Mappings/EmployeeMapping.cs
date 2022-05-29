@@ -1,7 +1,7 @@
-﻿using MCHomem.NPoco.Proto.Models.Entities;
-using NPoco.FluentMappings;
+﻿using NPoco.FluentMappings;
+using NPocoTestDrive.Domain.Entities;
 
-namespace MCHomem.NPoco.Proto.Models.Mappings
+namespace NPocoTestDrive.Data.Mappings
 {
     public class EmployeeMapping : Map<Employee>
     {

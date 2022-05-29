@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.IO;
 
-namespace MCHomem.NPoco.Proto.Models
+namespace NPocoTestDrive.Domain.Models
 {
     public static class AppSettings
     {

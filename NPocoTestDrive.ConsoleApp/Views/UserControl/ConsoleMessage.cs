@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MCHomem.NPoco.Proto.ConsoleApp.Views.UserControl
+﻿namespace NPocoTestDrive.ConsoleApp.Views.UserControl
 {
     public static class ConsoleMessage
     {
@@ -16,7 +14,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views.UserControl
             , WARNING
         }
 
-        public static void Show(String message, TypeMessage typeMessage, Boolean breakLine = true, Boolean stop = true)
+        public static void Show(string message, TypeMessage typeMessage, bool breakLine = true, bool stop = true)
         {
             switch (typeMessage)
             {

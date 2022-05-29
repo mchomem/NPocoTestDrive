@@ -1,11 +1,12 @@
-﻿using MCHomem.NPoco.Proto.Models.Mappings;
-using NPoco;
+﻿using NPoco;
 using NPoco.FluentMappings;
 using NPoco.SqlServer;
+using NPocoTestDrive.Data.Mappings;
+using NPocoTestDrive.Domain.Models;
 
-namespace MCHomem.NPoco.Proto.Models.Contexts
+namespace NPocoTestDrive.Data.Contexts
 {
-    public  class NPocoContext
+    public class NPocoContext
     {
         public static DatabaseFactory DbFactory { get; set; }
 

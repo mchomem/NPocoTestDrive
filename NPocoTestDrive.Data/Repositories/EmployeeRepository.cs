@@ -1,10 +1,9 @@
-﻿using MCHomem.NPoco.Proto.Models.Contexts;
-using MCHomem.NPoco.Proto.Models.Entities;
-using NPoco;
-using System.Collections.Generic;
+﻿using NPoco;
+using NPocoTestDrive.Data.Contexts;
+using NPocoTestDrive.Domain.Entities;
 using System.Text;
 
-namespace MCHomem.NPoco.Proto.Models.Repositories
+namespace NPocoTestDrive.Data.Repositories
 {
     public class EmployeeRepository : IRepository<Employee>
     {

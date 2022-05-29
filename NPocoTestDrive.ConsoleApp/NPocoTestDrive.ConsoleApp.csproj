@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MCHomem.NPoco.Proto.Models\MCHomem.NPoco.Proto.Models.csproj" />
+    <ProjectReference Include="..\NPocoTestDrive.Data\NPocoTestDrive.Data.csproj" />
+    <ProjectReference Include="..\NPocoTestDrive.Domain\NPocoTestDrive.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
