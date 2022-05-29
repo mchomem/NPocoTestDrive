@@ -12,13 +12,13 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                 EmployeeCon employeeCon = new EmployeeCon();
 
                 Console.Clear();
-                Console.WriteLine("Selecione uma operação:\n");
-                Console.WriteLine("1. Consultar colaborador;");
-                Console.WriteLine("2. Incluir novo colaborador;");
-                Console.WriteLine("3. Atualizar colaborador;");
-                Console.WriteLine("4. Excluir colaborador;");
-                Console.WriteLine("0. Finalizar.\n");
-                Console.Write("Operação: ");
+                Console.WriteLine("Select an operation:\n");
+                Console.WriteLine("1. Query an employee;");
+                Console.WriteLine("2. Add employee;");
+                Console.WriteLine("3. Update employee;");
+                Console.WriteLine("4. Delete employee;");
+                Console.WriteLine("0. Finish.\n");
+                Console.Write("Operation: ");
                 String op = Console.ReadLine();
 
                 switch (op)
@@ -44,7 +44,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                         break;
 
                     default:
-                        Console.WriteLine("Selecione uma operação válida!");
+                        Console.WriteLine("Select a valid operation!");
                         Console.ReadKey();
                         break;
                 }
@@ -58,7 +58,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
 
         private void Exit()
         {
-            Console.WriteLine("Pressione qualquer Tecla para encerrar.");
+            Console.WriteLine("Press any button to finish.");
             Environment.Exit(0);
         }
     }

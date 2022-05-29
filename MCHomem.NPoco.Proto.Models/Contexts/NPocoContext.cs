@@ -3,9 +3,9 @@ using NPoco;
 using NPoco.FluentMappings;
 using NPoco.SqlServer;
 
-namespace MCHomem.NPoco.Proto.Models.Repositories
+namespace MCHomem.NPoco.Proto.Models.Contexts
 {
-    public static class TestAppContext
+    public  class NPocoContext
     {
         public static DatabaseFactory DbFactory { get; set; }
 
@@ -25,7 +25,7 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
             DbFactory = DatabaseFactory.Config(x =>
             {
-                x.UsingDatabase(() => new SqlServerDatabase(AppSettings.StringConnection));
+                x.UsingDatabase(() => new SqlServerDatabase(AppSettings.SqlServerConnection));
                 x.WithFluentConfig(fluentConfig);
                 x.WithMapper(new Mapper());
             });

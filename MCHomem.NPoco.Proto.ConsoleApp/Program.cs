@@ -7,7 +7,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.Title = "NPoco CRUD";
+            Console.Title = "NPoco Test drive CRUD";
             new MenuCon().ShowMenu();
         }
     }

@@ -12,16 +12,16 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
         public void GetEmployees()
         {
             Console.Clear();
-            Console.WriteLine("Consultando, aguarde ...");
+            Console.WriteLine("Querying, wait ...");
             EmployeeRepository repository = new EmployeeRepository();
             List<Employee> employees = repository.Retreave(null);
             Console.Clear();
 
-            Int32 line = 120;
-            Int32 maxPagging = AppSettings.MaxPagging;
-            Int32 index = 0;
-            Int32 currentPage = 0;
-            Double totalPages = Math.Ceiling(Convert.ToDouble(employees.Count) / Convert.ToDouble(maxPagging));
+            int line = 120;
+            int maxPagging = AppSettings.MaxPagging;
+            int index = 0;
+            int currentPage = 0;
+            double totalPages = Math.Ceiling(Convert.ToDouble(employees.Count) / Convert.ToDouble(maxPagging));
 
             foreach (Employee employee in employees)
             {
@@ -31,11 +31,11 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine();
                     Console.Write("ID".PadRight(10, ' '));
-                    Console.Write("Nome".PadRight(30, ' '));
-                    Console.Write("CPF".PadRight(20, ' '));
-                    Console.Write("Ativo".PadRight(10, ' '));
-                    Console.Write("Criado em".PadRight(25, ' '));
-                    Console.Write("Atualizado em".PadRight(25, ' '));
+                    Console.Write("Name".PadRight(30, ' '));
+                    Console.Write("Doc number".PadRight(20, ' '));
+                    Console.Write("Active".PadRight(10, ' '));
+                    Console.Write("Created in".PadRight(25, ' '));
+                    Console.Write("Updated in".PadRight(25, ' '));
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.Write("".PadRight(line, '-'));
@@ -48,11 +48,11 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
 
                 if (employee.Active.Value)
                 {
-                    ConsoleMessage.Show("Sim".PadRight(10, ' '), ConsoleMessage.TypeMessage.OK, false, false);
+                    ConsoleMessage.Show("Yes".PadRight(10, ' '), ConsoleMessage.TypeMessage.OK, false, false);
                 }
                 else
                 {
-                    ConsoleMessage.Show("Não".PadRight(10, ' '), ConsoleMessage.TypeMessage.NOK, false, false);
+                    ConsoleMessage.Show("No".PadRight(10, ' '), ConsoleMessage.TypeMessage.NOK, false, false);
                 }
 
                 Console.Write(employee.CreatedIn.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25, ' '));
@@ -66,8 +66,8 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                     index = 0;
                     currentPage++;
                     Console.Write("".PadRight(line, '-'));
-                    Console.WriteLine($"\nTotal de registros {employees.Count}.\n\nExibindo {currentPage} de {totalPages} páginas.");
-                    Console.WriteLine("\nPressione uma tecla para continuar...");
+                    Console.WriteLine($"\nTotal records {employees.Count}.\n\nShowing {currentPage} of {totalPages} pages.");
+                    Console.WriteLine("\nPress any button to continue...");
                     Console.ReadKey();
                     Console.Clear();
                 }
@@ -78,14 +78,14 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
         private Employee GetEmployee()
         {
             EmployeeRepository repository = new EmployeeRepository();
-            Int32 employeeID = 0;
+            int employeeID = 0;
 
             while (true)
             {
-                Console.Write("Informe o ID do colaborador: ");
-                if (!Int32.TryParse(Console.ReadLine(), out employeeID))
+                Console.Write("Enter the employee ID: ");
+                if (!int.TryParse(Console.ReadLine(), out employeeID))
                 {
-                    ConsoleMessage.Show("Informe um número inteiro para o ID.", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Enter an integer number for the ID.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
                 break;
@@ -103,13 +103,15 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             while (true)
             {
                 Console.Clear();
-                Console.Write("Nome: ");
-                String name = Console.ReadLine();
-                if (String.IsNullOrEmpty(name))
+                Console.Write("Name: ");
+                string name = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(name))
                 {
-                    ConsoleMessage.Show("Informe o nome do colaborador.", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Enter the employee name.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
+
                 employee.Name = name;
                 break;
             }
@@ -117,17 +119,18 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             while (true)
             {
                 Console.Clear();
-                Console.Write("CPF: ");
-                String documentNumber = Console.ReadLine();
-                if (String.IsNullOrEmpty(documentNumber))
+                Console.Write("Doc number: ");
+                string documentNumber = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(documentNumber))
                 {
-                    ConsoleMessage.Show("Informe o CPF do colaborador.", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Enter the employee document number.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
 
                 if (documentNumber.Length < 11 || documentNumber.Length > 11)
                 {
-                    ConsoleMessage.Show("O CPF deve conter 11 caraceres.", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("The document number must contain 11 characters.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }                
 
@@ -139,7 +142,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             employee.CreatedIn = DateTime.Now;
 
             repository.Create(employee);
-            ConsoleMessage.Show("Colaborador cadastrado.", ConsoleMessage.TypeMessage.SUCCESS);
+            ConsoleMessage.Show("Registered employee.", ConsoleMessage.TypeMessage.SUCCESS);
             Console.ReadLine();
         }
 
@@ -149,7 +152,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
 
             if (employee == null)
             {
-                ConsoleMessage.Show("Registro não encontrado.", ConsoleMessage.TypeMessage.WARNING);
+                ConsoleMessage.Show("Register not found.", ConsoleMessage.TypeMessage.WARNING);
                 return;
             }
 
@@ -160,11 +163,11 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             while (true)
             {
                 Console.Clear();
-                Console.Write("Nome: ");
+                Console.Write("Name: ");
                 String name = Console.ReadLine();
                 if (String.IsNullOrEmpty(name))
                 {
-                    ConsoleMessage.Show("Informe um nome para o colaborador!", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Enter a name for the employee!", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
 
@@ -175,17 +178,17 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             while (true)
             {
                 Console.Clear();
-                Console.Write("CPF: ");
+                Console.Write("Doc number: ");
                 String documentNumber = Console.ReadLine();
                 if (String.IsNullOrEmpty(documentNumber))
                 {
-                    ConsoleMessage.Show("Informe o CPF do colaborador!", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Enter the employee's document number!", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
 
                 if (documentNumber.Length < 11 || documentNumber.Length > 11)
                 {
-                    ConsoleMessage.Show("O CPF deve conter 11 caraceres.", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("The document number must contain 11 characters.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
                 
@@ -198,10 +201,10 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             while (true)
             {
                 Console.Clear();
-                Console.Write("Ativo [s/n]? ");
+                Console.Write("Active[y/n]? ");
                 String op = Console.ReadLine().ToLower();
 
-                if (op.Equals("s"))
+                if (op.Equals("y"))
                 {
                     active = true;
                     break;
@@ -213,7 +216,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                 }
                 else
                 {
-                    ConsoleMessage.Show("Selecione \"s\" ou \"n\" para ativar ou desativar o colaborador.", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Select \"y\" or \"n\" to enable or disable the employee.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
             }
@@ -221,7 +224,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
             employee.Active = active;
             employee.UpdatedIn = DateTime.Now;
             repository.Update(employee);
-            ConsoleMessage.Show("Dados atualizados.", ConsoleMessage.TypeMessage.SUCCESS);
+            ConsoleMessage.Show("Updated data.", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
         public void DeleteEmployee()
@@ -230,7 +233,7 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
 
             if (employee == null)
             {
-                ConsoleMessage.Show("Colaborador não localizado.", ConsoleMessage.TypeMessage.WARNING);
+                ConsoleMessage.Show("Employee not found.", ConsoleMessage.TypeMessage.WARNING);
                 return;
             }
 
@@ -240,18 +243,18 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
 
             while (true)
             {
-                Console.Write("Deseja mesmo excluir o registro do colaborador ");
+                Console.Write("Do you really want to delete the collaborator record ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(employee.Name);
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write(" com CPF ");
+                Console.Write(" with document number ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(employee.DocumentNumber);
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write(" [s/n] ? ");
-                String op = Console.ReadLine().ToLower();
+                Console.Write(" [y/n] ? ");
+                string op = Console.ReadLine().ToLower();
 
-                if (op.Equals("s"))
+                if (op.Equals("y"))
                 {
                     break;
                 }
@@ -262,35 +265,35 @@ namespace MCHomem.NPoco.Proto.ConsoleApp.Views
                 }
                 else
                 {
-                    ConsoleMessage.Show("Informe \"s\" ou \"n\".", ConsoleMessage.TypeMessage.WARNING);
+                    ConsoleMessage.Show("Enter \"y\" or \"n\".", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
             }
 
             if (noDelete)
             {
-                ConsoleMessage.Show("Operação cancelada", ConsoleMessage.TypeMessage.WARNING);
+                ConsoleMessage.Show("Operation canceled", ConsoleMessage.TypeMessage.WARNING);
                 return;
             }
 
             EmployeeRepository repository = new EmployeeRepository();
             repository.Delete(employee);
-            ConsoleMessage.Show("Registro excluído", ConsoleMessage.TypeMessage.SUCCESS);
+            ConsoleMessage.Show("Record deleted", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
         private void GetEmployeeDetails(Employee employee)
         {
             Console.WriteLine();
-            Console.WriteLine("Nome: {0}", employee.Name);
-            Console.WriteLine("CPF: {0}", employee.DocumentNumber);
-            Console.WriteLine("Ativo: {0}", employee.Active.HasValue ? "Sim" : "Não");
+            Console.WriteLine("Name: {0}", employee.Name);
+            Console.WriteLine("Doc number: {0}", employee.DocumentNumber);
+            Console.WriteLine("Active: {0}", employee.Active.HasValue ? "Yes" : "No");
             Console.WriteLine();
             Console.ReadKey();
         }
 
-        private String FormatDocumentNumber(String documentNumber)
+        private string FormatDocumentNumber(string documentNumber)
         {
-            String aux = String.Empty;
+            string aux = string.Empty;
 
             for (int i = 0; i < documentNumber.Length; i++)
             {

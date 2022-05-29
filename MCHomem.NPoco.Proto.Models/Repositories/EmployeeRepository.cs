@@ -1,15 +1,16 @@
-﻿using MCHomem.NPoco.Proto.Models.Entities;
+﻿using MCHomem.NPoco.Proto.Models.Contexts;
+using MCHomem.NPoco.Proto.Models.Entities;
 using NPoco;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MCHomem.NPoco.Proto.Models.Repositories
 {
-    public class EmployeeRepository : ICrud<Employee>
+    public class EmployeeRepository : IRepository<Employee>
     {
         public void Create(Employee entity)
         {
-            using (IDatabase db = TestAppContext.Get())
+            using (IDatabase db = NPocoContext.Get())
             {
                 db.Insert(entity);
             }
@@ -17,7 +18,7 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
         public void Delete(Employee entity)
         {
-            using (IDatabase db = TestAppContext.Get())
+            using (IDatabase db = NPocoContext.Get())
             {
                 db.Delete(entity);
             }
@@ -25,7 +26,7 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
         public Employee Details(Employee entity)
         {
-            using (IDatabase db = TestAppContext.Get())
+            using (IDatabase db = NPocoContext.Get())
             {
                 return db.SingleOrDefaultById<Employee>(entity.EmployeeID);
             }
@@ -33,7 +34,7 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
         public List<Employee> Retreave(Employee entity)
         {
-            using (IDatabase db = TestAppContext.Get())
+            using (IDatabase db = NPocoContext.Get())
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append("select");
@@ -59,7 +60,7 @@ namespace MCHomem.NPoco.Proto.Models.Repositories
 
         public void Update(Employee entity)
         {
-            using (IDatabase db = TestAppContext.Get())
+            using (IDatabase db = NPocoContext.Get())
             {
                 db.Update(entity);
             }

@@ -6,35 +6,27 @@ namespace MCHomem.NPoco.Proto.Models
 {
     public static class AppSettings
     {
-        public static String StringConnection
-        {
-            get
-            {
-                return Get("SqlServerConnection");
-            }
-        }
+        public static string SqlServerConnection { get => GetConnectionString("SqlServerConnection"); }
 
-        public static Int32 MaxPagging
-        {
-            get
-            {
-                return Convert.ToInt32(Get("MaxPagging"));
-            }
-        }
+        public static int MaxPagging { get => Convert.ToInt32(GetValeuFromKey("MaxPagging")); }
 
-        private static String Get(String key)
+        private static IConfigurationRoot GetAppSettings()
         {
             try
             {
                 IConfigurationBuilder builder = new ConfigurationBuilder();
                 builder.AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"));
                 IConfigurationRoot root = builder.Build();
-                return root.GetConnectionString(key);
+                return root;
             }
-            catch (FileNotFoundException e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
+
+        private static string GetConnectionString(string key) => GetAppSettings().GetConnectionString(key);
+
+        private static string GetValeuFromKey(string key) => GetAppSettings().GetSection(key).Value;
     }
 }
