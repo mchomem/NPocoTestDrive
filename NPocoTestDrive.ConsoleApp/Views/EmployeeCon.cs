@@ -10,7 +10,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
         public void GetEmployees()
         {
             Console.Clear();
-            Console.WriteLine("Querying, wait ...");
+            Console.WriteLine("Getting data, wait ...");
             EmployeeRepository repository = new EmployeeRepository();
             List<Employee> employees = repository.Retreave(null);
             Console.Clear();
