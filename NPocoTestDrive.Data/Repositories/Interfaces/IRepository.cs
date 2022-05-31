@@ -1,6 +1,6 @@
-﻿namespace NPocoTestDrive.Data.Repositories
+﻿namespace NPocoTestDrive.Data.Repositories.Interfaces
 {
-    interface IRepository<T>
+    interface IRepository<T> where T : class
     {
         Task Create(T entity);
         Task Update(T entity);

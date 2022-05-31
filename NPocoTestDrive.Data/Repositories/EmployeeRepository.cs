@@ -1,5 +1,6 @@
 ﻿using NPoco;
 using NPocoTestDrive.Data.Contexts;
+using NPocoTestDrive.Data.Repositories.Interfaces;
 using NPocoTestDrive.Domain.Entities;
 using System.Text;
 
