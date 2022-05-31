@@ -7,31 +7,31 @@ namespace NPocoTestDrive.Data.Repositories
 {
     public class EmployeeRepository : IRepository<Employee>
     {
-        public void Create(Employee entity)
+        public async Task Create(Employee entity)
         {
             using (IDatabase db = NPocoContext.Get())
-            {
-                db.Insert(entity);
+            {  
+                await db.InsertAsync(entity);
             }
         }
 
-        public void Delete(Employee entity)
+        public async Task Delete(Employee entity)
         {
             using (IDatabase db = NPocoContext.Get())
             {
-                db.Delete(entity);
+                await db.DeleteAsync(entity);
             }
         }
 
-        public Employee Details(Employee entity)
+        public async Task<Employee> Details(Employee entity)
         {
             using (IDatabase db = NPocoContext.Get())
             {
-                return db.SingleOrDefaultById<Employee>(entity.EmployeeID);
+                return await db.SingleOrDefaultByIdAsync<Employee>(entity.EmployeeID);
             }
         }
 
-        public List<Employee> Retreave(Employee entity)
+        public async Task<List<Employee>> Retreave(Employee entity)
         {
             using (IDatabase db = NPocoContext.Get())
             {
@@ -46,7 +46,7 @@ namespace NPocoTestDrive.Data.Repositories
                 sql.Append(" and (@2 is null or DocumentNumber = @2)");
                 sql.Append(" and (@3 is null or Active = @3)");
 
-                return db.Fetch<Employee>
+                return await db.FetchAsync<Employee>
                     (
                         sql.ToString()
                         , entity?.EmployeeID
@@ -57,11 +57,11 @@ namespace NPocoTestDrive.Data.Repositories
             }
         }
 
-        public void Update(Employee entity)
+        public async Task Update(Employee entity)
         {
             using (IDatabase db = NPocoContext.Get())
             {
-                db.Update(entity);
+                await db.UpdateAsync(entity);
             }
         }
     }

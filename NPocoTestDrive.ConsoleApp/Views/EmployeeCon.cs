@@ -7,12 +7,12 @@ namespace NPocoTestDrive.ConsoleApp.Views
 {
     public class EmployeeCon
     {
-        public void GetEmployees()
+        public async Task GetEmployees()
         {
             Console.Clear();
             Console.WriteLine("Getting data, wait ...");
             EmployeeRepository repository = new EmployeeRepository();
-            List<Employee> employees = repository.Retreave(null);
+            List<Employee> employees = await repository.Retreave(null);
             Console.Clear();
 
             int line = 120;
@@ -73,7 +73,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
             Console.ReadKey();
         }
 
-        private Employee GetEmployee()
+        private async Task<Employee> GetEmployee()
         {
             EmployeeRepository repository = new EmployeeRepository();
             int employeeID = 0;
@@ -89,10 +89,10 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 break;
             }
 
-            return repository.Details(new Employee() { EmployeeID = employeeID });
+            return await repository.Details(new Employee() { EmployeeID = employeeID });
         }
 
-        public void IncludeEmployee()
+        public async Task IncludeEmployee()
         {
             EmployeeRepository repository = new EmployeeRepository();
 
@@ -139,14 +139,14 @@ namespace NPocoTestDrive.ConsoleApp.Views
             employee.Active = true;
             employee.CreatedIn = DateTime.Now;
 
-            repository.Create(employee);
+            await repository.Create(employee);
             ConsoleMessage.Show("Registered employee.", ConsoleMessage.TypeMessage.SUCCESS);
             Console.ReadLine();
         }
 
-        public void UpdateEmployee()
+        public async Task UpdateEmployee()
         {
-            Employee employee = this.GetEmployee();
+            Employee employee = await this.GetEmployee();
 
             if (employee == null)
             {
@@ -223,13 +223,13 @@ namespace NPocoTestDrive.ConsoleApp.Views
 
             employee.Active = active;
             employee.UpdatedIn = DateTime.Now;
-            repository.Update(employee);
+            await repository.Update(employee);
             ConsoleMessage.Show("Updated data.", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
-        public void DeleteEmployee()
+        public async Task DeleteEmployee()
         {
-            Employee employee = this.GetEmployee();
+            Employee employee = await this.GetEmployee();
 
             if (employee == null)
             {
@@ -277,7 +277,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
             }
 
             EmployeeRepository repository = new EmployeeRepository();
-            repository.Delete(employee);
+            await repository.Delete(employee);
             ConsoleMessage.Show("Record deleted", ConsoleMessage.TypeMessage.SUCCESS);
         }
 

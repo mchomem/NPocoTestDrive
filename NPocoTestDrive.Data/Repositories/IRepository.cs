@@ -2,10 +2,10 @@
 {
     interface IRepository<T>
     {
-        void Create(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        T Details(T entity);
-        List<T> Retreave(T entity);
+        Task Create(T entity);
+        Task Update(T entity);
+        Task Delete(T entity);
+        Task<T> Details(T entity);
+        Task<List<T>> Retreave(T entity);
     }
 }

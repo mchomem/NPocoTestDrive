@@ -2,7 +2,7 @@
 {
     public class MenuCon
     {
-        public void ShowMenu()
+        public async Task ShowMenu()
         {
             while (true)
             {
@@ -17,24 +17,24 @@
                 Console.WriteLine("4. Delete employee;");
                 Console.WriteLine("0. Finish.\n");
                 Console.Write("Operation: ");
-                string op = Console.ReadLine();
+                string? op = Console.ReadLine();
 
                 switch (op)
                 {
                     case "1":
-                        employeeCon.GetEmployees();
+                        await employeeCon.GetEmployees();
                         break;
 
                     case "2":
-                        employeeCon.IncludeEmployee();
+                        await employeeCon.IncludeEmployee();
                         break;
 
                     case "3":
-                        employeeCon.UpdateEmployee();
+                        await employeeCon.UpdateEmployee();
                         break;
 
                     case "4":
-                        employeeCon.DeleteEmployee();
+                        await employeeCon.DeleteEmployee();
                         break;
 
                     case "0":
