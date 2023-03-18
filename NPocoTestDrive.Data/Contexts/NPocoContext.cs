@@ -10,12 +10,15 @@ namespace NPocoTestDrive.Data.Contexts
     {
         public static DatabaseFactory? DbFactory { get; set; }
 
-        public static Database? Get()
+        public static Database Get()
         {
             if (DbFactory == null)            
-                Setup();            
+                Setup();
 
-            return DbFactory?.GetDatabase();
+            if (DbFactory == null)
+                throw new Exception("DbFactory is null");
+
+            return DbFactory.GetDatabase();
         }
 
         public static void Setup()
