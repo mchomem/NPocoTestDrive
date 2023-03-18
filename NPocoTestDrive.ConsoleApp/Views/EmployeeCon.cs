@@ -40,7 +40,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
                     Console.WriteLine();
                 }
 
-                Console.Write(employee.EmployeeID.ToString().PadRight(10, ' '));
+                Console.Write(employee.Id.ToString().PadRight(10, ' '));
                 Console.Write(employee.Name.PadRight(30, ' '));
                 Console.Write(employee.DocumentNumber.PadRight(20, ' '));
 
@@ -89,7 +89,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 break;
             }
 
-            return await repository.Details(new Employee() { EmployeeID = employeeID });
+            return await repository.Details(new Employee() { Id = employeeID });
         }
 
         public async Task IncludeEmployee()

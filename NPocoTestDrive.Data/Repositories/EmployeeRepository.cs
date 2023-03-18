@@ -28,7 +28,7 @@ namespace NPocoTestDrive.Data.Repositories
         {
             using (IDatabase db = new NPocoContext().Get())
             {
-                return await db.SingleOrDefaultByIdAsync<Employee>(entity.EmployeeID);
+                return await db.SingleOrDefaultByIdAsync<Employee>(entity.Id);
             }
         }
 
@@ -42,7 +42,7 @@ namespace NPocoTestDrive.Data.Repositories
                 sql.Append(" from");
                 sql.Append(" Employee");
                 sql.Append(" where");
-                sql.Append(" (@0 is null or EmployeeID = @0)");
+                sql.Append(" (@0 is null or Id = @0)");
                 sql.Append(" and (@1 is null or [Name] like '%' + @1 + '%')");
                 sql.Append(" and (@2 is null or DocumentNumber = @2)");
                 sql.Append(" and (@3 is null or Active = @3)");
@@ -50,7 +50,7 @@ namespace NPocoTestDrive.Data.Repositories
                 return await db.FetchAsync<Employee>
                     (
                         sql.ToString()
-                        , entity?.EmployeeID
+                        , entity?.Id
                         , entity?.Name
                         , entity?.DocumentNumber
                         , entity?.Active

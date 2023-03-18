@@ -19,7 +19,7 @@ begin
 
 		create table Employee
 		(
-			EmployeeID int not null identity(1,1)
+			Id int not null identity(1,1)
 			, [Name] nvarchar(100) not null
 			, DocumentNumber nvarchar(14) not null
 			, Active bit not null
@@ -31,7 +31,7 @@ begin
 	begin
 		create table Employee
 		(
-			EmployeeID int not null identity(1,1)
+			Id int not null identity(1,1)
 			, [Name] nvarchar(100) not null
 			, DocumentNumber nvarchar(14) not null
 			, Active bit not null
@@ -40,7 +40,7 @@ begin
 		)
 	end
 
-	alter table Employee add constraint PK_Employee primary key(EmployeeID)
+	alter table Employee add constraint PK_Employee primary key(Id)
 end
 go
 
