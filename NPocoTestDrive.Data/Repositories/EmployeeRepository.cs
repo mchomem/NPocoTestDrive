@@ -6,7 +6,7 @@ using System.Text;
 
 namespace NPocoTestDrive.Data.Repositories
 {
-    public class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IEmployeeRepository
     {
         public async Task Create(Employee entity)
         {
