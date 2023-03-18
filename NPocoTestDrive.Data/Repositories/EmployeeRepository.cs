@@ -10,7 +10,7 @@ namespace NPocoTestDrive.Data.Repositories
     {
         public async Task Create(Employee entity)
         {
-            using (IDatabase db = NPocoContext.Get())
+            using (IDatabase db = new NPocoContext().Get())
             {  
                 await db.InsertAsync(entity);
             }
@@ -18,7 +18,7 @@ namespace NPocoTestDrive.Data.Repositories
 
         public async Task Delete(Employee entity)
         {
-            using (IDatabase db = NPocoContext.Get())
+            using (IDatabase db = new NPocoContext().Get())
             {
                 await db.DeleteAsync(entity);
             }
@@ -26,7 +26,7 @@ namespace NPocoTestDrive.Data.Repositories
 
         public async Task<Employee> Details(Employee entity)
         {
-            using (IDatabase db = NPocoContext.Get())
+            using (IDatabase db = new NPocoContext().Get())
             {
                 return await db.SingleOrDefaultByIdAsync<Employee>(entity.EmployeeID);
             }
@@ -34,7 +34,7 @@ namespace NPocoTestDrive.Data.Repositories
 
         public async Task<List<Employee>> Retreave(Employee entity)
         {
-            using (IDatabase db = NPocoContext.Get())
+            using (IDatabase db = new NPocoContext().Get())
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append("select");
@@ -60,7 +60,7 @@ namespace NPocoTestDrive.Data.Repositories
 
         public async Task Update(Employee entity)
         {
-            using (IDatabase db = NPocoContext.Get())
+            using (IDatabase db = new NPocoContext().Get())
             {
                 await db.UpdateAsync(entity);
             }

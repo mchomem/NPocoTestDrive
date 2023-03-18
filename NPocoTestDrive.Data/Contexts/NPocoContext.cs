@@ -8,9 +8,9 @@ namespace NPocoTestDrive.Data.Contexts
 {
     public class NPocoContext
     {
-        public static DatabaseFactory? DbFactory { get; set; }
+        public DatabaseFactory? DbFactory { get; set; }
 
-        public static Database Get()
+        public Database Get()
         {
             if (DbFactory == null)            
                 Setup();
@@ -21,7 +21,7 @@ namespace NPocoTestDrive.Data.Contexts
             return DbFactory.GetDatabase();
         }
 
-        public static void Setup()
+        private void Setup()
         {
             FluentConfig fluentConfig = FluentMappingConfiguration.Configure(new EmployeeMapping());
 
