@@ -12,7 +12,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
             Console.Clear();
             Console.WriteLine("Getting data, wait ...");
             EmployeeRepository repository = new EmployeeRepository();
-            List<Employee> employees = await repository.Retreave(null);
+            List<Employee> employees = await repository.Retreave();
             Console.Clear();
 
             int line = 120;
@@ -20,6 +20,9 @@ namespace NPocoTestDrive.ConsoleApp.Views
             int index = 0;
             int currentPage = 0;
             double totalPages = Math.Ceiling(Convert.ToDouble(employees.Count) / Convert.ToDouble(maxPagging));
+
+            if (employees.Count == 0)
+                Console.WriteLine("No data found");
 
             foreach (Employee employee in employees)
             {
@@ -45,13 +48,9 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 Console.Write(employee.DocumentNumber.PadRight(20, ' '));
 
                 if (employee.Active.Value)
-                {
                     ConsoleMessage.Show("Yes".PadRight(10, ' '), ConsoleMessage.TypeMessage.OK, false, false);
-                }
                 else
-                {
                     ConsoleMessage.Show("No".PadRight(10, ' '), ConsoleMessage.TypeMessage.NOK, false, false);
-                }
 
                 Console.Write(employee.CreatedIn.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25, ' '));
                 Console.Write(employee.UpdatedIn?.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25, ' '));

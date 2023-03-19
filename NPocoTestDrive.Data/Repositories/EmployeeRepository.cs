@@ -11,7 +11,7 @@ namespace NPocoTestDrive.Data.Repositories
         public async Task Create(Employee entity)
         {
             using (IDatabase db = new NPocoContext().Get())
-            {  
+            {
                 await db.InsertAsync(entity);
             }
         }
@@ -24,7 +24,7 @@ namespace NPocoTestDrive.Data.Repositories
             }
         }
 
-        public async Task<Employee> Details(Employee entity)
+        public async Task<Employee> Details(Employee? entity = null)
         {
             using (IDatabase db = new NPocoContext().Get())
             {
@@ -32,13 +32,43 @@ namespace NPocoTestDrive.Data.Repositories
             }
         }
 
-        public async Task<List<Employee>> Retreave(Employee entity)
+        public async Task<Employee> DetailsSql(Employee? entity = null)
+        {
+            throw new NotImplementedException("Method DetailsSql not implemented");
+        }
+
+        public async Task<List<Employee>> Retreave(Employee? entity = null)
+        {
+            using (IDatabase db = new NPocoContext().Get())
+            {
+                if (entity != null)
+                    return await db
+                        .Query<Employee>()
+                        .Where(x =>
+                        (
+                             (string.IsNullOrEmpty(entity.Name) || x.Name.Contains(entity.Name))
+                             && (string.IsNullOrEmpty(entity.DocumentNumber) || x.DocumentNumber == entity.DocumentNumber)                            
+                        ))
+                        .ToListAsync();
+                else
+                    return await db
+                        .Query<Employee>()
+                        .ToListAsync();
+            }
+        }
+
+        public async Task<List<Employee>> RetreaveSql(Employee? entity = null)
         {
             using (IDatabase db = new NPocoContext().Get())
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append("select");
-                sql.Append(" *");
+                sql.Append(" Id");
+                sql.Append(" ,Name");
+                sql.Append(" ,DocumentNumber");
+                sql.Append(" ,Active");
+                sql.Append(" ,CreatedIn");
+                sql.Append(" ,UpdatedIn");
                 sql.Append(" from");
                 sql.Append(" Employee");
                 sql.Append(" where");
