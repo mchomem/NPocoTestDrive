@@ -1,40 +1,53 @@
-﻿namespace NPocoTestDrive.ConsoleApp.Views
+﻿using NPocoTestDrive.ConsoleApp.Views.Interfaces;
+
+namespace NPocoTestDrive.ConsoleApp.Views
 {
-    public class MenuCon
+    public class MenuCon : IMenuCon
     {
+        private readonly IEmployeeCon _employeeCon;
+
+        public MenuCon(IEmployeeCon employeeCon)
+            => _employeeCon = employeeCon;
+
         public async Task ShowMenu()
         {
+            Console.Title = "NPoco Test drive CRUD";
+
             while (true)
             {
-                bool exit = false;
-                EmployeeCon employeeCon = new EmployeeCon();
+                var exit = false;
 
                 Console.Clear();
                 Console.WriteLine("Select an operation:\n");
                 Console.WriteLine("1. Query an employee;");
-                Console.WriteLine("2. Add employee;");
-                Console.WriteLine("3. Update employee;");
-                Console.WriteLine("4. Delete employee;");
+                Console.WriteLine("2. Query all employees;");
+                Console.WriteLine("3. Add employee;");
+                Console.WriteLine("4. Update employee;");
+                Console.WriteLine("5. Delete employee;");
                 Console.WriteLine("0. Finish.\n");
                 Console.Write("Operation: ");
-                string? op = Console.ReadLine();
+                var op = Console.ReadLine();
 
                 switch (op)
                 {
                     case "1":
-                        await employeeCon.GetEmployees();
+                        await _employeeCon.GetEmployee();
                         break;
 
                     case "2":
-                        await employeeCon.IncludeEmployee();
+                        await _employeeCon.GetEmployees();
                         break;
 
                     case "3":
-                        await employeeCon.UpdateEmployee();
+                        await _employeeCon.IncludeEmployee();
                         break;
 
                     case "4":
-                        await employeeCon.DeleteEmployee();
+                        await _employeeCon.UpdateEmployee();
+                        break;
+
+                    case "5":
+                        await _employeeCon.DeleteEmployee();
                         break;
 
                     case "0":
@@ -48,9 +61,7 @@
                 }
 
                 if (exit)
-                {
                     this.Exit();
-                }
             }
         }
 

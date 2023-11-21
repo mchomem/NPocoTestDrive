@@ -1,4 +1,5 @@
-﻿using NPoco;
+﻿using Microsoft.Data.SqlClient;
+using NPoco;
 using NPoco.FluentMappings;
 using NPoco.SqlServer;
 using NPocoTestDrive.Data.Mappings;
@@ -6,9 +7,14 @@ using NPocoTestDrive.Domain.Models;
 
 namespace NPocoTestDrive.Data.Contexts
 {
-    public class NPocoContext
+    public class NPocoContext : Database
     {
         public DatabaseFactory? DbFactory { get; set; }
+
+        public NPocoContext() : base(AppSettings.SqlServerConnection, DatabaseType.SqlServer2012, SqlClientFactory.Instance)
+        {
+            this.Get();
+        }
 
         public Database Get()
         {

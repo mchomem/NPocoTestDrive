@@ -1,28 +1,36 @@
-﻿using NPocoTestDrive.ConsoleApp.Views.UserControl;
-using NPocoTestDrive.Data.Repositories;
+﻿using NPocoTestDrive.ConsoleApp.Views.Interfaces;
+using NPocoTestDrive.ConsoleApp.Views.UserControl;
+using NPocoTestDrive.Data.Repositories.Interfaces;
 using NPocoTestDrive.Domain.Entities;
 using NPocoTestDrive.Domain.Models;
 
 namespace NPocoTestDrive.ConsoleApp.Views
 {
-    public class EmployeeCon
+    public class EmployeeCon : IEmployeeCon
     {
+        private readonly IEmployeeRepository _employeeRepository;
+
+        public EmployeeCon(IEmployeeRepository employeeRepository)
+            => _employeeRepository = employeeRepository;
+
         public async Task GetEmployees()
         {
             Console.Clear();
             Console.WriteLine("Getting data, wait ...");
-            EmployeeRepository repository = new EmployeeRepository();
-            List<Employee> employees = await repository.Retreave();
+            List<Employee> employees = await _employeeRepository.Retreave(null);
             Console.Clear();
 
-            int line = 120;
-            int maxPagging = AppSettings.MaxPagging;
-            int index = 0;
-            int currentPage = 0;
+            var line = 120;
+            var maxPagging = AppSettings.MaxPagging;
+            var index = 0;
+            var currentPage = 0;
             double totalPages = Math.Ceiling(Convert.ToDouble(employees.Count) / Convert.ToDouble(maxPagging));
 
             if (employees.Count == 0)
-                Console.WriteLine("No data found");
+            {
+                Console.WriteLine("Data not found");
+                return;
+            }
 
             foreach (Employee employee in employees)
             {
@@ -72,14 +80,14 @@ namespace NPocoTestDrive.ConsoleApp.Views
             Console.ReadKey();
         }
 
-        private async Task<Employee> GetEmployee()
+        public async Task<Employee> GetEmployee()
         {
-            EmployeeRepository repository = new EmployeeRepository();
             int employeeID = 0;
 
             while (true)
             {
                 Console.Write("Enter the employee ID: ");
+
                 if (!int.TryParse(Console.ReadLine(), out employeeID))
                 {
                     ConsoleMessage.Show("Enter an integer number for the ID.", ConsoleMessage.TypeMessage.WARNING);
@@ -88,20 +96,25 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 break;
             }
 
-            return await repository.Details(new Employee() { Id = employeeID });
+            var employee = await _employeeRepository.Details(new Employee() { Id = employeeID });
+
+            Console.WriteLine($"Name: {employee.Name}");
+            Console.WriteLine($"Document Number: {employee.DocumentNumber}");
+            Console.WriteLine($"Registration status: { (employee.Active.Value ? "Active" : "Deacrive") }");
+            Console.ReadKey();
+
+            return employee;
         }
 
         public async Task IncludeEmployee()
         {
-            EmployeeRepository repository = new EmployeeRepository();
-
             Employee employee = new Employee();
 
             while (true)
             {
                 Console.Clear();
                 Console.Write("Name: ");
-                string name = Console.ReadLine();
+                var name = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(name))
                 {
@@ -117,7 +130,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
             {
                 Console.Clear();
                 Console.Write("Doc number: ");
-                string documentNumber = Console.ReadLine();
+                var documentNumber = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(documentNumber))
                 {
@@ -138,7 +151,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
             employee.Active = true;
             employee.CreatedIn = DateTime.Now;
 
-            await repository.Create(employee);
+            await _employeeRepository.Create(employee);
             ConsoleMessage.Show("Registered employee.", ConsoleMessage.TypeMessage.SUCCESS);
             Console.ReadLine();
         }
@@ -155,13 +168,11 @@ namespace NPocoTestDrive.ConsoleApp.Views
 
             this.GetEmployeeDetails(employee);
 
-            EmployeeRepository repository = new EmployeeRepository();
-
             while (true)
             {
                 Console.Clear();
                 Console.Write("Name: ");
-                string name = Console.ReadLine();
+                var name = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(name))
                 {
@@ -177,7 +188,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
             {
                 Console.Clear();
                 Console.Write("Doc number: ");
-                string documentNumber = Console.ReadLine();
+                var documentNumber = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(documentNumber))
                 {
@@ -195,13 +206,13 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 break;
             }
 
-            Boolean active;
+            var active = false;
 
             while (true)
             {
                 Console.Clear();
                 Console.Write("Active[y/n]? ");
-                string op = Console.ReadLine().ToLower();
+                var op = Console.ReadLine()?.ToLower();
 
                 if (op.Equals("y"))
                 {
@@ -222,7 +233,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
 
             employee.Active = active;
             employee.UpdatedIn = DateTime.Now;
-            await repository.Update(employee);
+            await _employeeRepository.Update(employee);
             ConsoleMessage.Show("Updated data.", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
@@ -238,7 +249,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
 
             this.GetEmployeeDetails(employee);
 
-            bool noDelete = false;
+            var noDelete = false;
 
             while (true)
             {
@@ -251,9 +262,9 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 Console.Write(employee.DocumentNumber);
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write(" [y/n] ? ");
-                string op = Console.ReadLine().ToLower();
+                var op = Console.ReadLine()?.ToLower();
 
-                if (op.Equals("y"))
+                if (op!.Equals("y"))
                 {
                     break;
                 }
@@ -275,8 +286,7 @@ namespace NPocoTestDrive.ConsoleApp.Views
                 return;
             }
 
-            EmployeeRepository repository = new EmployeeRepository();
-            await repository.Delete(employee);
+            await _employeeRepository.Delete(employee);
             ConsoleMessage.Show("Record deleted", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
