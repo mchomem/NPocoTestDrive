@@ -1,11 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using NPocoTestDrive.ConsoleApp.Views;
-using NPocoTestDrive.ConsoleApp.Views.Interfaces;
-using NPocoTestDrive.Data.Contexts;
-using NPocoTestDrive.Data.Repositories;
-using NPocoTestDrive.Data.Repositories.Interfaces;
-
-var serviceCollection = new ServiceCollection();
+﻿var serviceCollection = new ServiceCollection();
 ConfigureServices(serviceCollection);
 ServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
 var executorService = serviceProvider.GetService<IMenuCon>();

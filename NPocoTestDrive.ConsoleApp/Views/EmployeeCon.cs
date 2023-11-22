@@ -1,10 +1,4 @@
-﻿using NPocoTestDrive.ConsoleApp.Views.Interfaces;
-using NPocoTestDrive.ConsoleApp.Views.UserControl;
-using NPocoTestDrive.Data.Repositories.Interfaces;
-using NPocoTestDrive.Domain.Entities;
-using NPocoTestDrive.Domain.Models;
-
-namespace NPocoTestDrive.ConsoleApp.Views
+﻿namespace NPocoTestDrive.ConsoleApp.Views
 {
     public class EmployeeCon : IEmployeeCon
     {

@@ -1,6 +1,4 @@
-﻿using NPocoTestDrive.ConsoleApp.Views.Interfaces;
-
-namespace NPocoTestDrive.ConsoleApp.Views
+﻿namespace NPocoTestDrive.ConsoleApp.Views
 {
     public class MenuCon : IMenuCon
     {

@@ -1,9 +1,4 @@
-﻿using NPocoTestDrive.Data.Contexts;
-using NPocoTestDrive.Data.Repositories.Interfaces;
-using NPocoTestDrive.Domain.Entities;
-using System.Text;
-
-namespace NPocoTestDrive.Data.Repositories
+﻿namespace NPocoTestDrive.Data.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
     {

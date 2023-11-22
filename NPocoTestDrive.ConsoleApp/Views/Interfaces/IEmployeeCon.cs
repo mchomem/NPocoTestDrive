@@ -1,6 +1,4 @@
-﻿using NPocoTestDrive.Domain.Entities;
-
-namespace NPocoTestDrive.ConsoleApp.Views.Interfaces
+﻿namespace NPocoTestDrive.ConsoleApp.Views.Interfaces
 {
     public interface IEmployeeCon
     {

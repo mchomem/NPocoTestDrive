@@ -1,7 +1,4 @@
-﻿using NPoco.FluentMappings;
-using NPocoTestDrive.Domain.Entities;
-
-namespace NPocoTestDrive.Data.Mappings
+﻿namespace NPocoTestDrive.Data.Mappings
 {
     public class EmployeeMapping : Map<Employee>
     {

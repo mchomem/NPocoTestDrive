@@ -1,11 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using NPoco;
-using NPoco.FluentMappings;
-using NPoco.SqlServer;
-using NPocoTestDrive.Data.Mappings;
-using NPocoTestDrive.Domain.Models;
-
-namespace NPocoTestDrive.Data.Contexts
+﻿namespace NPocoTestDrive.Data.Contexts
 {
     public class NPocoContext : Database
     {

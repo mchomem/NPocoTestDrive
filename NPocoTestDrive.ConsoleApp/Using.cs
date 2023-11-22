@@ -1,0 +1,9 @@
+﻿global using Microsoft.Extensions.DependencyInjection;
+global using NPocoTestDrive.ConsoleApp.Views;
+global using NPocoTestDrive.ConsoleApp.Views.Interfaces;
+global using NPocoTestDrive.Data.Contexts;
+global using NPocoTestDrive.Data.Repositories;
+global using NPocoTestDrive.Data.Repositories.Interfaces;
+global using NPocoTestDrive.Domain.Entities;
+global using NPocoTestDrive.ConsoleApp.Views.UserControl;
+global using NPocoTestDrive.Domain.Models;
