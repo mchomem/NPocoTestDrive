@@ -4,7 +4,7 @@ global using NPoco.FluentMappings;
 global using NPoco.SqlServer;
 global using NPocoTestDrive.Data.Contexts;
 global using NPocoTestDrive.Data.Mappings;
-global using NPocoTestDrive.Data.Repositories.Interfaces;
+global using NPocoTestDrive.Domain.Repositories;
 global using NPocoTestDrive.Domain.Entities;
 global using NPocoTestDrive.Domain.Models;
 global using System.Text;

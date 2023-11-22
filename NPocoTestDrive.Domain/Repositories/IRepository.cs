@@ -1,4 +1,4 @@
-﻿namespace NPocoTestDrive.Data.Repositories.Interfaces
+﻿namespace NPocoTestDrive.Domain.Repositories
 {
     public interface IRepository<T> where T : class
     {
