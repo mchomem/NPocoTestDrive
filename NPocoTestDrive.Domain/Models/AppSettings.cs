@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace NPocoTestDrive.Domain.Models
+﻿namespace NPocoTestDrive.Domain.Models
 {
     public static class AppSettings
     {

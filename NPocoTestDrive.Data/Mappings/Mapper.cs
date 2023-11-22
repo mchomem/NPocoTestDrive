@@ -1,6 +1,4 @@
-﻿using NPoco;
-
-namespace NPocoTestDrive.Data.Mappings
+﻿namespace NPocoTestDrive.Data.Mappings
 {
     public class Mapper : DefaultMapper
     {
