@@ -92,9 +92,19 @@
 
             var employee = await _employeeRepository.Details(new Employee() { Id = employeeID });
 
-            Console.WriteLine($"Name: {employee.Name}");
-            Console.WriteLine($"Document Number: {employee.DocumentNumber}");
-            Console.WriteLine($"Registration status: { (employee.Active.Value ? "Active" : "Deacrive") }");
+            if (employee != null)
+            {
+                Console.Clear();
+                Console.WriteLine("Data Emplooyee\n");
+                Console.WriteLine($"Name: {employee.Name}");
+                Console.WriteLine($"Document Number: {employee.DocumentNumber}");
+                Console.WriteLine($"Registration status: {(employee.Active.Value ? "Active" : "Deacrive")}");
+            }
+            else
+            {
+                Console.WriteLine("Not found");
+            }
+
             Console.ReadKey();
 
             return employee;
