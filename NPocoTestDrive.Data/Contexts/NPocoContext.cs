@@ -5,13 +5,11 @@
         public DatabaseFactory? DbFactory { get; set; }
 
         public NPocoContext() : base(AppSettings.SqlServerConnection, DatabaseType.SqlServer2012, SqlClientFactory.Instance)
-        {
-            this.Get();
-        }
+            => this.Get();
 
         public Database Get()
         {
-            if (DbFactory == null)            
+            if (DbFactory == null)
                 Setup();
 
             if (DbFactory == null)
