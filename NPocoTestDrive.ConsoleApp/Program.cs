@@ -10,4 +10,5 @@ static void ConfigureServices(IServiceCollection services)
     services.AddScoped<IMenuCon, MenuCon>();
     services.AddScoped<IEmployeeCon, EmployeeCon>();
     services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    services.AddScoped<IEmployeeService, EmployeeService>();
 }

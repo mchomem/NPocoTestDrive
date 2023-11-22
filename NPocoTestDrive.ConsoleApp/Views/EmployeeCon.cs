@@ -2,16 +2,16 @@
 {
     public class EmployeeCon : IEmployeeCon
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeService _employeeService;
 
-        public EmployeeCon(IEmployeeRepository employeeRepository)
-            => _employeeRepository = employeeRepository;
+        public EmployeeCon(IEmployeeService employeeService)
+            => _employeeService = employeeService;
 
         public async Task GetEmployees()
         {
             Console.Clear();
             Console.WriteLine("Getting data, wait ...");
-            List<Employee> employees = await _employeeRepository.Retreave(null);
+            List<Employee> employees = await _employeeService.Retreave(null);
             Console.Clear();
 
             var line = 120;
@@ -90,7 +90,7 @@
                 break;
             }
 
-            var employee = await _employeeRepository.Details(new Employee() { Id = employeeID });
+            var employee = await _employeeService.Details(new Employee() { Id = employeeID });
 
             if (employee != null)
             {
@@ -155,7 +155,7 @@
             employee.Active = true;
             employee.CreatedIn = DateTime.Now;
 
-            await _employeeRepository.Create(employee);
+            await _employeeService.Create(employee);
             ConsoleMessage.Show("Registered employee.", ConsoleMessage.TypeMessage.SUCCESS);
             Console.ReadLine();
         }
@@ -237,7 +237,7 @@
 
             employee.Active = active;
             employee.UpdatedIn = DateTime.Now;
-            await _employeeRepository.Update(employee);
+            await _employeeService.Update(employee);
             ConsoleMessage.Show("Updated data.", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
@@ -290,7 +290,7 @@
                 return;
             }
 
-            await _employeeRepository.Delete(employee);
+            await _employeeService.Delete(employee);
             ConsoleMessage.Show("Record deleted", ConsoleMessage.TypeMessage.SUCCESS);
         }
 

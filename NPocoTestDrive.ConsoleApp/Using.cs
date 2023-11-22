@@ -7,3 +7,5 @@ global using NPocoTestDrive.Domain.Models;
 global using NPocoTestDrive.Domain.Repositories;
 global using NPocoTestDrive.Data.Contexts;
 global using NPocoTestDrive.Data.Repositories;
+global using NPocoTestDrive.Domain.Services;
+global using NPocoTestDrive.Service.Services;
