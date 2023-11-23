@@ -12,11 +12,10 @@
             Console.Clear();
             Console.WriteLine("Getting data, wait ...");
             List<Employee> employees = await _employeeService.Retreave(null);
-            Console.Clear();
 
             var line = 120;
             var maxPagging = AppSettings.MaxPagging;
-            var index = 0;
+            var row = 0;
             var currentPage = 0;
             double totalPages = Math.Ceiling(Convert.ToDouble(employees.Count) / Convert.ToDouble(maxPagging));
 
@@ -28,7 +27,7 @@
 
             foreach (Employee employee in employees)
             {
-                if (index == 0)
+                if (row == 0)
                 {
                     Console.Write("".PadRight(line, '-'));
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -58,14 +57,14 @@
                 Console.Write(employee.UpdatedIn?.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25, ' '));
                 Console.WriteLine();
 
-                index++;
+                row++; 
 
-                if (maxPagging == index || currentPage == totalPages)
+                if (maxPagging == row || currentPage == totalPages)
                 {
-                    index = 0;
+                    row = 0;
                     currentPage++;
                     Console.Write("".PadRight(line, '-'));
-                    Console.WriteLine($"\nTotal records {employees.Count}.\n\nShowing {currentPage} of {totalPages} pages.");
+                    Console.WriteLine($"\nShowing {currentPage} of {totalPages} pages for {employees.Count}");
                     Console.WriteLine("\nPress any button to continue...");
                     Console.ReadKey();
                     Console.Clear();
@@ -87,6 +86,7 @@
                     ConsoleMessage.Show("Enter an integer number for the ID.", ConsoleMessage.TypeMessage.WARNING);
                     continue;
                 }
+
                 break;
             }
 

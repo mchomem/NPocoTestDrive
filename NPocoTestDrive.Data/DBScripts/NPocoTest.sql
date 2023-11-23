@@ -1,3 +1,7 @@
+/*
+	Sql Server script.
+*/
+
 use master
 go
 
@@ -52,12 +56,11 @@ begin
 	DBCC CHECKIDENT ('Employee', RESEED, 1);
 end
 
-
 declare @tabNames table (id int identity(1,1), [name] nvarchar(50))
-insert into @tabNames values('Andre'),( 'Bruno'),( 'Carlos'),( 'Daniel'),( 'Eduardo'),( 'Fabrício'),( 'Gabriel'),( 'Heron'),( 'Israel'),( 'João'),( 'Leonarndo'),( 'Marcos')
+insert into @tabNames values('Andre'),('Bruno'),('Carlos'),('Daniel'),('Eduardo'),('Fabrício'),('Gabriel'),('Heron'),('Israel'),('João'),('Leonarndo'),('Marcos')
 
 declare @tabSecondNames table (id int identity(1,1), [name] nvarchar(50))
-insert into @tabSecondNames values('Arnaldo'),( 'Batista'),( 'Canto'),( 'Dantes'),( 'Estevão'),( 'Farçante'),( 'Galão'),( 'Hebron'),( 'Istanbu'),( 'Jarel'),( 'Lemos'),( 'Marcondes')
+insert into @tabSecondNames values('Arnaldo'),('Batista'),('Canto'),('Dantes'),('Estevão'),('Farçante'),('Galão'),('Hebron'),('Istanbu'),('Jarel'),('Lemos'),('Marcondes')
 
 
 declare @totalRecords int = 1000
@@ -122,3 +125,4 @@ begin
 end
 
 select * from Employee
+go
