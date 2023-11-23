@@ -2,7 +2,7 @@
 {
     public interface IEmployeeCon
     {
-        public Task<Employee> GetEmployee();
+        public Task<EmployeeDto> GetEmployee();
         public Task GetEmployees();
         public Task IncludeEmployee();
         public Task UpdateEmployee();

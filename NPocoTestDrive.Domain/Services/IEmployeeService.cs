@@ -2,14 +2,14 @@
 {
     public interface IEmployeeService
     {
-        public Task Create(Employee entity);
+        public Task Create(EmployeeDto entity);
 
-        public Task Delete(Employee entity);
+        public Task Delete(EmployeeDto entity);
 
-        public Task<Employee> Details(Employee? entity = null);
+        public Task<EmployeeDto> Details(EmployeeDto? entity = null);
 
-        public Task<List<Employee>> Retreave(Employee? entity = null);
+        public Task<List<EmployeeDto>> Retreave(EmployeeDto? entity = null);
 
-        public Task Update(Employee entity);
+        public Task Update(EmployeeDto entity);
     }
 }

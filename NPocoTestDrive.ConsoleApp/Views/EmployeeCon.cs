@@ -11,7 +11,7 @@
         {
             Console.Clear();
             Console.WriteLine("Getting data, wait ...");
-            List<Employee> employees = await _employeeService.Retreave(null);
+            List<EmployeeDto> employees = await _employeeService.Retreave(null);
 
             var line = 120;
             var maxPagging = AppSettings.MaxPagging;
@@ -25,7 +25,7 @@
                 return;
             }
 
-            foreach (Employee employee in employees)
+            foreach (EmployeeDto employee in employees)
             {
                 if (row == 0)
                 {
@@ -72,7 +72,7 @@
             }
         }
 
-        public async Task<Employee> GetEmployee()
+        public async Task<EmployeeDto> GetEmployee()
         {
             int employeeID = 0;
 
@@ -89,7 +89,7 @@
                 break;
             }
 
-            var employee = await _employeeService.Details(new Employee() { Id = employeeID });
+            var employee = await _employeeService.Details(new EmployeeDto() { Id = employeeID });
 
             if (employee != null)
             {
@@ -111,7 +111,7 @@
 
         public async Task IncludeEmployee()
         {
-            Employee employee = new Employee();
+            EmployeeDto employee = new EmployeeDto();
 
             while (true)
             {
@@ -161,7 +161,7 @@
 
         public async Task UpdateEmployee()
         {
-            Employee employee = await this.GetEmployee();
+            EmployeeDto employee = await this.GetEmployee();
 
             if (employee == null)
             {
@@ -242,7 +242,7 @@
 
         public async Task DeleteEmployee()
         {
-            Employee employee = await this.GetEmployee();
+            EmployeeDto employee = await this.GetEmployee();
 
             if (employee == null)
             {
@@ -293,7 +293,7 @@
             ConsoleMessage.Show("Record deleted", ConsoleMessage.TypeMessage.SUCCESS);
         }
 
-        private void GetEmployeeDetails(Employee employee)
+        private void GetEmployeeDetails(EmployeeDto employee)
         {
             Console.WriteLine();
             Console.WriteLine("Name: {0}", employee.Name);
