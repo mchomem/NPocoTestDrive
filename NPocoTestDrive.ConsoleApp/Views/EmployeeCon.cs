@@ -57,9 +57,9 @@
                 Console.Write(employee.UpdatedIn?.ToString("dd/MM/yyyy HH:mm:ss").PadRight(25, ' '));
                 Console.WriteLine();
 
-                row++; 
+                row++;
 
-                if (maxPagging == row || currentPage == totalPages)
+                if (maxPagging == row || currentPage == totalPages || employees.Last().Id == employee.Id)
                 {
                     row = 0;
                     currentPage++;
@@ -70,7 +70,6 @@
                     Console.Clear();
                 }
             }
-            Console.ReadKey();
         }
 
         public async Task<Employee> GetEmployee()
